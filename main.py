@@ -1,10 +1,8 @@
-from typing import AnyStr
 import json
 import requests
 from bs4 import BeautifulSoup
 
-num_page = 1
-
+page_number = 1
 
 def page(num_page):
     response = requests.get(f"https://quotes.toscrape.com/page/{num_page}/")
