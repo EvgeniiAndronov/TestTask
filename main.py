@@ -1,10 +1,9 @@
-from typing import AnyStr
 import json
 import requests
 from bs4 import BeautifulSoup
+import sys
 
-num_page = 1
-
+page_number = 1
 
 def page(num_page):
     response = requests.get(f"https://quotes.toscrape.com/page/{num_page}/")
@@ -47,3 +46,15 @@ def file_wroter(page_number):
     if data != None:
         json.dump(data, open("data.json", "a+", encoding="utf-8"))
         print(f"Wrote in JSON file, page = {num_page}")
+
+if __name__ == "__main__":
+    args = sys.argv[1:]
+    arr = []
+    try:
+        for arg in args:
+            arr.append(int(arg))
+    except ValueError:
+        print("error in arguments")
+
+    for arg in arr:
+        file_wroter(arg)
